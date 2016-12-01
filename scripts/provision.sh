@@ -88,20 +88,20 @@ service nginx restart
 
 # Add The HHVM Key & Repository
 
-wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
-echo deb http://dl.hhvm.com/ubuntu xenial main | tee /etc/apt/sources.list.d/hhvm.list
-apt-get update
-apt-get install -y hhvm
+# wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
+# echo deb http://dl.hhvm.com/ubuntu xenial main | tee /etc/apt/sources.list.d/hhvm.list
+# apt-get update
+# apt-get install -y hhvm
 
 # Configure HHVM To Run As Homestead
 
-service hhvm stop
-sed -i 's/#RUN_AS_USER="www-data"/RUN_AS_USER="vagrant"/' /etc/default/hhvm
-service hhvm start
+# service hhvm stop
+# sed -i 's/#RUN_AS_USER="www-data"/RUN_AS_USER="vagrant"/' /etc/default/hhvm
+# service hhvm start
 
 # Start HHVM On System Start
 
-update-rc.d hhvm defaults
+# update-rc.d hhvm defaults
 
 # Setup Some PHP-FPM Options
 
@@ -209,15 +209,15 @@ mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user=root --password=secret my
 
 # Install Postgres
 
-apt-get install -y postgresql
+# apt-get install -y postgresql
 
 # Configure Postgres Remote Access
 
-sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/9.5/main/postgresql.conf
-echo "host    all             all             10.0.2.2/32               md5" | tee -a /etc/postgresql/9.5/main/pg_hba.conf
-sudo -u postgres psql -c "CREATE ROLE homestead LOGIN UNENCRYPTED PASSWORD 'secret' SUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;"
-sudo -u postgres /usr/bin/createdb --echo --owner=homestead homestead
-service postgresql restart
+# sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/9.5/main/postgresql.conf
+# echo "host    all             all             10.0.2.2/32               md5" | tee -a /etc/postgresql/9.5/main/pg_hba.conf
+# sudo -u postgres psql -c "CREATE ROLE homestead LOGIN UNENCRYPTED PASSWORD 'secret' SUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;"
+# sudo -u postgres /usr/bin/createdb --echo --owner=homestead homestead
+# service postgresql restart
 
 # Install Blackfire
 
