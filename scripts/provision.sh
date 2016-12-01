@@ -2,6 +2,13 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Check MYSQL_PSWD environment variable.
+
+if [ -z "$MYSQL_PSWD" ]; then
+    >&2 echo "Environment variable MYSQL_PSWD is not set. Cannot create mysql root user."
+    exit 1
+fi
+
 # Update Package List
 
 apt-get update
