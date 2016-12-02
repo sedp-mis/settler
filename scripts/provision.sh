@@ -11,10 +11,10 @@ fi
 
 # Check DEFAULT_USER environment variable.
 
-if [ -z "$DEFAULT_USER" ]; then
-    >&2 echo "Environment variable DEFAULT_USER is not set. Cannot configure nginx and php-fpm with default user."
-    exit 1
-fi
+# if [ -z "$DEFAULT_USER" ]; then
+#     >&2 echo "Environment variable DEFAULT_USER is not set. Cannot configure nginx and php-fpm with default user."
+#     exit 1
+# fi
 
 # Update Package List
 
